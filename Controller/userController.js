@@ -95,10 +95,12 @@ export const login = async (req, res) => {
         message: "Wrong Password",
       });
     }
-    await jwttoken(preuser._id, res);
+    
+    const token = await jwttoken(preuser._id, res);
     return res.status(200).json({
       message: "Login Successful",
       preuser,
+      token
     });
   } catch (error) {
     console.log(error);
