@@ -5,6 +5,7 @@ import todorouter from "./Routes/todoRouter.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { jwttoken } from "./Jwt/token.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ try {
 }
 
 app.use(express.json());
+app.use(jwttoken);
 
 
 //router
