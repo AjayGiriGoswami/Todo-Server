@@ -1,24 +1,15 @@
 import jwt from "jsonwebtoken";
 import userModel from "../Models/UserModel.js";
 
-/**
- * Generates a JWT token for the given user ID and sets it as a cookie in the response.
- * 
- * @param {string} userId - The ID of the user.
- * @param {object} res - The HTTP response object.
- * @returns {string} The generated JWT token.
- */
 export const jwttoken = async (userId, res) => {
   try {
     const token = jwt.sign({ userId }, process.env.KEY, {
-      expiresIn: "1h",
+      expiresIn: "1d",
     });
 
-    // Set the secure flag to true in production environments
     const cookieOptions = {
       httpOnly: true,
-      path: "/",
-      sameSite: "strict",
+   
     };
 
     res.cookie("jwt", token, cookieOptions);
